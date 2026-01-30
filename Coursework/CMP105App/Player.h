@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "Framework/Input.h";
+#include "Framework/Input.h"
 #include "Framework/GameObject.h"
 #include "Framework/Animation.h"
 
@@ -22,6 +22,10 @@ private:
 
 	//Animations
 	Animation m_walkDown;
+	Animation m_walkDownRight;
+	Animation m_walkRight;
+	Animation m_walkUpRight;
+	Animation m_walkUp;
 
 	Animation* m_currentAnim;
 

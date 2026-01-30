@@ -9,6 +9,7 @@ Level::Level(sf::RenderWindow& hwnd, Input& in) :
 
 	m_sheep.setInput(&m_input);
 	m_sheep.setWindow(&m_window);
+	m_sheep.setPosition({ 200,200 });
 
 	m_sheep.setSize({64,64});
 

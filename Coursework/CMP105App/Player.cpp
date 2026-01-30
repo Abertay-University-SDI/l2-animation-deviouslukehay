@@ -13,6 +13,14 @@ Player::Player() {
 
 	m_walkDown.setLooping(true);
 	m_walkDown.setFrameSpeed(1.f / 8.f);
+	m_walkDownRight.setLooping(true);
+	m_walkDownRight.setFrameSpeed(1.f / 8.f);
+	m_walkRight.setLooping(true);
+	m_walkRight.setFrameSpeed(1.f / 8.f);
+	m_walkUpRight.setLooping(true);
+	m_walkUpRight.setFrameSpeed(1.f / 8.f);
+	m_walkUp.setLooping(true);
+	m_walkUp.setFrameSpeed(1.f / 8.f);
 
 	m_currentAnim = &m_walkDown;
 
@@ -30,15 +38,21 @@ void Player::update(float dt) {
 	{
 	case Direction::UP:
 		move({ 0, -orthog_speed });
+		m_currentAnim = &m_walkUp;
 		break;
 	case Direction::UP_RIGHT:
 		move({ diagonal_speed, -diagonal_speed });
+		m_currentAnim = &m_walkUpRight;
+		m_currentAnim->setFlipped(false);
 		break;
 	case Direction::RIGHT:
 		move({ orthog_speed,0 });
+		m_currentAnim = &m_walkRight;
+
 		break;
 	case Direction::DOWN_RIGHT:
 		move({ diagonal_speed, diagonal_speed });
+		m_currentAnim = &m_walkDownRight;
 		break;
 	case Direction::DOWN:
 		move({ 0, orthog_speed });
@@ -51,6 +65,8 @@ void Player::update(float dt) {
 		break;
 	case Direction::UP_LEFT:
 		move({ -diagonal_speed, -diagonal_speed });
+		break;
+	case Direction::NONE:
 		break;
 	}
 
