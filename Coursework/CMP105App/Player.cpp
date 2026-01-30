@@ -4,12 +4,36 @@ Player::Player() {
 
 	for (int i = 0; i < 4; i++) {
 
-		int row = i % 4;
-
-		sf::IntRect texture_rect({ row * 64, 0 }, { 64,64 });
+		sf::IntRect texture_rect({ i * 64, 0 }, { 64,64 });
 
 		m_walkDown.addFrame(texture_rect);
 	}
+	for (int i = 0; i < 4; i++) {
+
+		sf::IntRect texture_rect({ (i * 64) + 64*4, 0 }, { 64,64 });
+
+		m_walkUp.addFrame(texture_rect);
+	}
+	for (int i = 0; i < 4; i++) {
+
+		sf::IntRect texture_rect({ i * 64, 64 }, { 64,64 });
+
+		m_walkUpRight.addFrame(texture_rect);
+	}
+	for (int i = 0; i < 4; i++) {
+
+		sf::IntRect texture_rect({ (i * 64) + 64*4, 64 }, { 64,64 });
+
+		m_walkRight.addFrame(texture_rect);
+	}
+	for (int i = 0; i < 4; i++) {
+
+		sf::IntRect texture_rect({ i * 64, 128 }, { 64,64 });
+
+		m_walkDownRight.addFrame(texture_rect);
+	}
+
+
 
 	m_walkDown.setLooping(true);
 	m_walkDown.setFrameSpeed(1.f / 8.f);
@@ -48,23 +72,31 @@ void Player::update(float dt) {
 	case Direction::RIGHT:
 		move({ orthog_speed,0 });
 		m_currentAnim = &m_walkRight;
-
+		m_currentAnim->setFlipped(false);
 		break;
 	case Direction::DOWN_RIGHT:
 		move({ diagonal_speed, diagonal_speed });
 		m_currentAnim = &m_walkDownRight;
+		m_currentAnim->setFlipped(false);
 		break;
 	case Direction::DOWN:
 		move({ 0, orthog_speed });
+		m_currentAnim = &m_walkDown;
 		break;
 	case Direction::DOWN_LEFT:
 		move({ -diagonal_speed, diagonal_speed });
+		m_currentAnim = &m_walkDownRight;
+		m_currentAnim->setFlipped(true);
 		break;
 	case Direction::LEFT:
 		move({ -orthog_speed,0 });
+		m_currentAnim = &m_walkRight;
+		m_currentAnim->setFlipped(true);
 		break;
 	case Direction::UP_LEFT:
 		move({ -diagonal_speed, -diagonal_speed });
+		m_currentAnim = &m_walkUpRight;
+		m_currentAnim->setFlipped(true);
 		break;
 	case Direction::NONE:
 		break;

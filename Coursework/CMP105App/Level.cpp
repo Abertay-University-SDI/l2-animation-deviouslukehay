@@ -3,10 +3,6 @@
 Level::Level(sf::RenderWindow& hwnd, Input& in) :
 	BaseLevel(hwnd, in)
 {
-	m_snake.setRadius(20);
-	m_snake.setPosition({ 50, 50 });
-	m_snake.setFillColor(sf::Color::Green);
-
 	m_sheep.setInput(&m_input);
 	m_sheep.setWindow(&m_window);
 	m_sheep.setPosition({ 200,200 });
@@ -48,7 +44,6 @@ void Level::update(float dt)
 void Level::render()
 {
 	beginDraw();
-	m_window.draw(m_snake);
 	m_window.draw(m_sheep);
 	endDraw();
 }

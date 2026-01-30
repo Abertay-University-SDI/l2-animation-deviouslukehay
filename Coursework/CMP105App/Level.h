@@ -16,11 +16,6 @@ public:
 private:
 	// Default functions for rendering to the screen.
 
-	// Default variables for level class.
-	
-	sf::CircleShape m_snake;
-	
-
 	Player m_sheep;
 	sf::Texture m_sheepTexture;
 
