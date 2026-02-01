@@ -99,6 +99,8 @@ void Player::update(float dt) {
 		m_currentAnim->setFlipped(true);
 		break;
 	case Direction::NONE:
+		m_currentAnim->stop();
+		m_currentAnim->setPlaying(true);
 		break;
 	}
 
@@ -110,12 +112,10 @@ void Player::update(float dt) {
 	if (pos.x < 0 || pos.x + width /2 > m_window->getSize().x || pos.y < 0 || pos.y + height /2 > m_window->getSize().y)
 	{
 		m_gameOver = true;
-		std::cout << "Game over";
 	}
 
-
-
 	m_currentAnim->animate(dt);
+
 	setTextureRect(m_currentAnim->getCurrentFrame());
 
 }
@@ -159,6 +159,9 @@ void Player::handleInput(float dt){
 			m_direction = Direction::DOWN;
 	}
 
+	if (m_input->isKeyDown(sf::Keyboard::Scancode::Space))
+		m_direction = Direction::NONE;
+
 	// set input buffer if needed, this makes diagonal movement easier
 	if (m_direction != last_dir)
 		m_inputBuffer = INPUT_BUFFER_LENGTH;
@@ -170,4 +173,8 @@ bool Player::getGameOver() {
 
 void Player::setGameOver(bool gameOver) {
 	m_gameOver = gameOver;
+}
+
+void Player::declareGameOver() {
+	std::cout << "Game Over" << std::endl;
 }

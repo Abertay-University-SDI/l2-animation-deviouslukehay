@@ -3,6 +3,7 @@
 #include "Framework/BaseLevel.h"
 #include "Framework/GameObject.h"
 #include "Player.h"
+#include "Worm.h"
 
 class Level : BaseLevel {
 public:
@@ -18,5 +19,8 @@ private:
 
 	Player m_sheep;
 	sf::Texture m_sheepTexture;
+
+	Worm m_worm;
+	sf::Texture m_wormTexture;
 
 };

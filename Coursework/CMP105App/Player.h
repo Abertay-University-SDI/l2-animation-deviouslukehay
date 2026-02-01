@@ -15,8 +15,9 @@ public:
 	void handleInput(float dt) override;
 
 	bool getGameOver();
-
 	void setGameOver(bool gameOver);
+
+	void declareGameOver();
 
 private:
 
